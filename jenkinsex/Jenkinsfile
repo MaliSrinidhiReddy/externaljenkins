@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    stages{
+        stage("Checkout"){
+            steps{
+                echo "Source code checkout completed"
+            }
+        }
+        stage("Info"){
+            steps{
+                echo "Project: Jenkins CI/CD Demo"
+                echo "Pipeline execution started"
+            }
+        }
+        stage("Build"){
+            steps{
+                echo "Build completed successfully"
+            }
+        }
+        stage("Test"){
+            steps{
+                echo "Test completed successfully"
+            }
+        }
+        stage("Package"){
+            steps{
+                writeFile file: "application.txt"
+                text: "Jenkins CI/CD Demo Application"
+                echo "Application packages successfully"
+            }
+        }
+        stage("Artifact Generation"){
+            steps{
+                archiveArtifacts artifacts: "application.txt"
+                echo "Artifact generated successfully"
+            }
+        }
+        stage("Deploy"){
+            steps{
+                echo "Application deployed successfully"
+            }
+        }
+    }
+    post{
+        success{
+            echo "pipeline completed successfully"
+        }
+        failure{
+            echo "pipeline failed"
+        }
+    }
+}
