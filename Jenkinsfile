@@ -22,19 +22,7 @@ pipeline {
                 echo "Test completed successfully"
             }
         }
-        stage("Package"){
-            steps{
-                writeFile file: "application.txt"
-                text: "Jenkins CI/CD Demo Application"
-                echo "Application packages successfully"
-            }
-        }
-        stage("Artifact Generation"){
-            steps{
-                archiveArtifacts artifacts: "application.txt"
-                echo "Artifact generated successfully"
-            }
-        }
+        
         stage("Deploy"){
             steps{
                 echo "Application deployed successfully"
